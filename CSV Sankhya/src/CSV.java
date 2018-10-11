@@ -1,35 +1,25 @@
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-//import br.com.ConexaoBanco.Conexao;
-//import br.com.ConexaoBanco.Conexao;
-import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
-import br.com.sankhya.extensions.actionbutton.ContextoAcao;
-//import br.com.sankhya.extensions.actionbutton.QueryExecutor;
-
-public class InsereMeta implements AcaoRotinaJava {
+public class CSV {
+	static String arquivoCSV = "C:\\csv\\arquivo.csv";
+	static String csvDivisor = ",";
+	static int pk;
 	
-	//
-	//static String ptexto,puf,plugar, pnome;
-	//static Connection conexao;
-	//public static String status = "Não conectou...";
-	
-	public static void main(String[] args) throws Exception {
-
-		//Connection a = Conexao.ObterConexao();
-		Conexao.RetornaStatus();
-		/*
+	public static void ObterCSV() throws SQLException {
 		BufferedReader br = null;
 		String linha = "";
 		
 		
 		try {
-			conexao = ObterConexao();
+			Connection con = Conexao.ObterConexao();
 			br = new BufferedReader(new FileReader(arquivoCSV));
 			while ((linha = br.readLine()) != null) {
 
@@ -39,9 +29,11 @@ public class InsereMeta implements AcaoRotinaJava {
 				System.out.println(pais[pais.length - 2].replaceAll("\"", ""));
 				System.out.println(pais[pais.length - 1].replaceAll("\"",  ""));
 				
-				Statement statement = InsereMeta.createStatement();
+				String busca = Conexao.busca(con, "5412");
+				//Statement statement = Conexao.createStatement();
 				String query = "SELECT count(id) as id FROM AD_TESTEMRS";
-				ResultSet resultSet = statement.executeQuery(query);
+				//ResultSet resultSet = statement.executeQuery(query);
+				/*
 				if (resultSet.next()) {
 					pk = resultSet.getInt("id");
 					// System.out.println(resultSet.getInt("CODPROD") + " " +
@@ -56,9 +48,10 @@ public class InsereMeta implements AcaoRotinaJava {
 
 				} else {
 					pk = 1;
-				};
+				};*/
+				/*
 
-				PreparedStatement stmt = conexao.prepareStatement("insert into AD_TESTEMRS(id, nome, nome2, lugar)values(?,?,?,?)");
+			PreparedStatement stmt = CSV.prepareStatement("insert into AD_TESTEMRS(id, nome, nome2, lugar)values(?,?,?,?)");
 				// preenche os valores
 				stmt.setInt(1, pk);
 				stmt.setString(2,pais[pais.length - 3].replaceAll("\"", "").replace(" ", ""));
@@ -68,7 +61,7 @@ public class InsereMeta implements AcaoRotinaJava {
 				// executa
 				stmt.execute();
 				stmt.close();
-				
+				*/
 			}
 
 		} catch (FileNotFoundException e) {
@@ -77,7 +70,7 @@ public class InsereMeta implements AcaoRotinaJava {
 			e.printStackTrace();
 		} finally {
 			
-			conexao.close();
+			//conexao.close();
 			if (br != null) {
 				try {
 					br.close();
@@ -86,19 +79,6 @@ public class InsereMeta implements AcaoRotinaJava {
 				}
 			}
 		}
-		*/
-	}
-
-
-	
-
 		
-
-	@Override
-	public void doAction(ContextoAcao arg0) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
-
-
 }
